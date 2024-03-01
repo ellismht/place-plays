@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlacePlays.WebApi", "PlacePlays.WebApi\PlacePlays.WebApi.csproj", "{C17B406A-2809-4657-A5C1-FAA860424368}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlacePlays.Mobile", "PlacePlays.Mobile\PlacePlays.Mobile.csproj", "{07244467-5786-4518-9EB6-451B860F2B19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C17B406A-2809-4657-A5C1-FAA860424368}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C17B406A-2809-4657-A5C1-FAA860424368}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C17B406A-2809-4657-A5C1-FAA860424368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07244467-5786-4518-9EB6-451B860F2B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07244467-5786-4518-9EB6-451B860F2B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07244467-5786-4518-9EB6-451B860F2B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07244467-5786-4518-9EB6-451B860F2B19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
