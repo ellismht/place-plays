@@ -1,7 +1,12 @@
+using PlacePlays.Application;
+using PlacePlays.Infrastructure;
+using PlacePlays.WebApi.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -13,6 +18,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapGroup("/spotify")
+    .MapSpotifyEndpoints();
 
 app.UseHttpsRedirection();
 
