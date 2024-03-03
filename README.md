@@ -1,3 +1,3 @@
 # place-plays
 
-An app to see what music is playing in the area
+An app to see what music is playing in Spotify in the area
