@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlacePlays.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlacePlays.Application", "PlacePlays.Application\PlacePlays.Application.csproj", "{E89E3A1D-9E0A-4CDA-820B-F5FE893CF1F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlacePlays.Mobile", "PlacePlays.Mobile\PlacePlays.Mobile.csproj", "{9FA30991-D782-4C8D-A577-22EA1D0F3BA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E89E3A1D-9E0A-4CDA-820B-F5FE893CF1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E89E3A1D-9E0A-4CDA-820B-F5FE893CF1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E89E3A1D-9E0A-4CDA-820B-F5FE893CF1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FA30991-D782-4C8D-A577-22EA1D0F3BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FA30991-D782-4C8D-A577-22EA1D0F3BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FA30991-D782-4C8D-A577-22EA1D0F3BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FA30991-D782-4C8D-A577-22EA1D0F3BA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
