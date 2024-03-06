@@ -1,14 +1,24 @@
-﻿namespace PlacePlays.Mobile;
+﻿using Microsoft.Extensions.Configuration;
+using Org.Apache.Http.Authentication;
+
+namespace PlacePlays.Mobile;
 
 public partial class MainPage : ContentPage
 {
     int count = 0;
 
-    public MainPage()
+    public MainPage(IConfiguration config)
     {
         InitializeComponent();
-        
-       Browser.Default.OpenAsync(new Uri("https://accounts.spotify.com/authorize?response_type=token&client_id=-&scope=user-read-currently-playing&redirect_uri=pp://auth&state=123"),BrowserLaunchMode.SystemPreferred);
+
+        var address = new Uri(config["Auth:Address"] + 
+                              "?response_type=" + config["Auth:ResponseType"] +
+                              "&client_id=" + config["Auth:ClientId"] + 
+                              "&scope=" + config["Auth:Scope"] + 
+                              "&redirect_uri=" + config["Auth:RedirectUri"] +
+                              "&state=" + "123"
+                              );
+        Browser.Default.OpenAsync(address, BrowserLaunchMode.SystemPreferred);
     }
 
     private void OnCounterClicked(object sender, EventArgs e)
