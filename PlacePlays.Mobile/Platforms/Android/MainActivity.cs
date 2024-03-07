@@ -1,8 +1,8 @@
-﻿using Android.App;
+﻿using System.Text.Json;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.OS;
-using Microsoft.Maui.LifecycleEvents;
+using PlacePlays.Mobile.Models;
 
 namespace PlacePlays.Mobile;
 
@@ -16,10 +16,22 @@ namespace PlacePlays.Mobile;
     Categories = [ Intent.ActionView, Intent.CategoryDefault, Intent.CategoryBrowsable ])]
 public class MainActivity : MauiAppCompatActivity
 {
-    protected override void OnNewIntent(Intent intent)
+    protected override async void OnNewIntent(Intent intent)
     {
         base.OnNewIntent(intent);
-
-        var smth = 0;
+        
+        var code = intent.Data.GetQueryParameter("code");
+        
+        var parameters = new Dictionary<string, string>
+        {
+            { "code", code },
+            { "redirect_uri", "pp://auth" },
+            { "grant_type", "authorization_code" }
+        };
+        
+        var response = await MauiProgram.SpotifyAuth.PostAsync(
+            "/api/token", new FormUrlEncodedContent(parameters));
+        
+        MauiProgram.TokenData = JsonSerializer.Deserialize<TokenModel>(await response.Content.ReadAsStringAsync());
     }
 }
