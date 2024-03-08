@@ -6,19 +6,9 @@ public partial class MainPage : ContentPage
 {
     int count = 0;
 
-    public MainPage(IConfiguration config)
+    public MainPage()
     {
         InitializeComponent();
-
-        var address = new Uri(config["Auth:AuthAddress"] + 
-                              "?response_type=" + config["Auth:ResponseType"] +
-                              "&client_id=" + config["Auth:ClientId"] + 
-                              "&scope=" + config["Auth:Scope"] + 
-                              "&redirect_uri=" + config["Auth:RedirectUri"] +
-                              "&state=" + "123"
-                              );
-        
-        Browser.Default.OpenAsync(address, BrowserLaunchMode.SystemPreferred);
     }
 
     private void OnCounterClicked(object sender, EventArgs e)

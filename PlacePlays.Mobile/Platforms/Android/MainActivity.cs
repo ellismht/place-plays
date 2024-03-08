@@ -1,7 +1,7 @@
-﻿using System.Text.Json;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
+using PlacePlays.Mobile.Helpers;
 using PlacePlays.Mobile.Models;
 
 namespace PlacePlays.Mobile;
@@ -20,18 +20,11 @@ public class MainActivity : MauiAppCompatActivity
     {
         base.OnNewIntent(intent);
         
-        var code = intent.Data.GetQueryParameter("code");
+        var code = intent.Data.GetQueryParameter(AuthParamsInfo.CodeParamName);
         
-        var parameters = new Dictionary<string, string>
-        {
-            { "code", code },
-            { "redirect_uri", "pp://auth" },
-            { "grant_type", "authorization_code" }
-        };
-        
-        var response = await MauiProgram.SpotifyAuth.PostAsync(
-            "/api/token", new FormUrlEncodedContent(parameters));
-        
-        MauiProgram.TokenData = JsonSerializer.Deserialize<TokenModel>(await response.Content.ReadAsStringAsync());
+        var response = !string.IsNullOrWhiteSpace(code) && await AuthHelper.PostForToken(code);
+
+        if (!response || Intent.ActionView != intent.Action)
+            throw new Exception();
     }
 }
