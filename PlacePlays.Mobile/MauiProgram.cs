@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Reflection;
+﻿using System.Reflection;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -11,8 +10,7 @@ namespace PlacePlays.Mobile;
 public static class MauiProgram
 {
     private const string AuthSectionName = "Auth"; 
-    public static HttpClient SpotifyAuth;
-    public static AuthOptionModel AuthOptions;
+    
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
@@ -29,17 +27,9 @@ public static class MauiProgram
         using var stream = ass.GetManifestResourceStream("PlacePlays.Mobile.appsettings.json");
         var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
         builder.Configuration.AddConfiguration(config);
+
+        builder.Services.Configure<AuthOptionModel>(builder.Configuration.GetSection(AuthSectionName));
         
-        AuthOptions = builder.Configuration.GetOptions<AuthOptionModel>(AuthSectionName);
-
-        SpotifyAuth = new HttpClient()
-        {
-            BaseAddress = new Uri(AuthOptions.BaseAuthAddress)
-        };
-        SpotifyAuth.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-            "Basic", 
-            AuthExtensions.GetBase64String(AuthOptions.ClientId, AuthOptions.ClientSecret));
-
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<AuthPage>();
 
