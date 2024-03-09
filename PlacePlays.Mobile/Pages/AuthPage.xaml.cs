@@ -13,6 +13,6 @@ public partial class AuthPage : ContentPage
     {
         base.OnAppearing();
         
-        await AuthHelper.OpenAuthBrowser();
+        await AuthHelper.GetAccessToken();
     }
 }

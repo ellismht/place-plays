@@ -10,6 +10,7 @@ namespace PlacePlays.Mobile;
 public static class MauiProgram
 {
     private const string AuthSectionName = "Auth"; 
+    private const string SpotifySectionName = "Spotify"; 
     
     public static MauiApp CreateMauiApp()
     {
@@ -29,6 +30,7 @@ public static class MauiProgram
         builder.Configuration.AddConfiguration(config);
 
         builder.Services.Configure<AuthOptionModel>(builder.Configuration.GetSection(AuthSectionName));
+        builder.Services.Configure<SpotifyOptionModel>(builder.Configuration.GetSection(SpotifySectionName));
         
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<AuthPage>();

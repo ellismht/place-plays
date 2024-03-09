@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using PlacePlays.Mobile.Models;
 
@@ -35,6 +36,17 @@ public static class AuthHelper
         return new FormUrlEncodedContent(parameters);
     }
     
+    private static FormUrlEncodedContent GetRefreshTokenParams(string refreshToken)
+    {
+        var parameters = new Dictionary<string, string>
+        {
+            { AuthParamsInfo.GrantTypeParamName, App.AuthOptions.RefreshTokenGrantType },
+            { AuthParamsInfo.RefreshTokenParamName, refreshToken}
+        };
+
+        return new FormUrlEncodedContent(parameters);
+    }
+    
     private static async Task SetTokenSecureStorage(TokenDataModel tokenData)
     {
         await SecureStorage.Default.SetAsync(AuthParamsInfo.AccessTokenParamName, tokenData.AccessToken);
@@ -59,6 +71,7 @@ public static class AuthHelper
         var tokenData = await response.Content.ReadFromJsonAsync<TokenDataModel>();
 
         await SetTokenSecureStorage(tokenData);
+        SetAuthHeader(tokenData.AccessToken);
 
         return true;
     }
@@ -81,17 +94,25 @@ public static class AuthHelper
                 break;
             case(true, false):
             {
-                //sprawdz date
+                await CheckTokenExpireDate(true, false, accessToken, refreshToken);
             }
                 break;
             case (false, true):
             {
-                //send refreshToken
+                var isSuccess = await PostRefreshToken(refreshToken);
+                if (isSuccess)
+                {
+                    await Shell.Current.GoToAsync(nameof(MainPage));
+                    return;
+                }
+                
+                CleanTokenSecureStorage();
+                await OpenAuthBrowser();
             }
                 break;
             case (true, true):
             {
-                //sprawdz date
+                await CheckTokenExpireDate(true, true, accessToken, refreshToken);
             }
                 break;
             
@@ -99,7 +120,7 @@ public static class AuthHelper
     }
 
     private static async Task CheckTokenExpireDate(bool accessTokenExists, 
-        bool refreshTokenExists)
+        bool refreshTokenExists, string accessToken, string refreshToken)
     {
         var expireDateString = await SecureStorage.Default.GetAsync(AuthParamsInfo.ExpireDateParamName);
         if (string.IsNullOrWhiteSpace(expireDateString))
@@ -110,34 +131,52 @@ public static class AuthHelper
         }
 
         var expireDate = DateTimeOffset.Parse(expireDateString);
-        if (expireDate < TimeProvider.System.GetLocalNow())
+        if (expireDate < TimeProvider.System.GetLocalNow() && refreshTokenExists)
         {
-            if (!refreshTokenExists)
+            var isSuccess = await PostRefreshToken(refreshToken);
+            if (isSuccess)
             {
-                CleanTokenSecureStorage();
-                await OpenAuthBrowser();
+                await Shell.Current.GoToAsync(nameof(MainPage));
                 return;
             }
-            
-            //wysłanie refreshToken
-            return;
         }
         else
         {
-            if (accessTokenExists) return;
-            CleanTokenSecureStorage();
-            await OpenAuthBrowser();
-            return;
+            if (accessTokenExists && refreshTokenExists)
+            {
+                SetAuthHeader(accessToken);
+                await Shell.Current.GoToAsync(nameof(MainPage));
+                return;
+            }
         }
-    }
-
-    private static Task SendRefreshToken()
-    {
         
+        CleanTokenSecureStorage();
+        await OpenAuthBrowser();
     }
 
-    public static async Task OpenAuthBrowser()
+    private static async Task<bool> PostRefreshToken(string refreshToken)
+    {
+        var response = await App.SpotifyAuth.PostAsync(
+            "/api/token", GetRefreshTokenParams(refreshToken));
+        if (!response.IsSuccessStatusCode) return false;
+
+        var tokenData = await response.Content.ReadFromJsonAsync<TokenDataModel>();
+        tokenData.RefreshToken = refreshToken;
+        
+        await SetTokenSecureStorage(tokenData);
+        SetAuthHeader(tokenData.AccessToken);
+        
+        return true;
+    }
+
+    private static async Task OpenAuthBrowser()
     {
         await Browser.Default.OpenAsync(GetCodeAuthUri(), BrowserLaunchMode.SystemPreferred);
+    }
+
+    private static void SetAuthHeader(string accessToken)
+    {
+        App.SpotifyClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+            App.AuthOptions.TokenType, accessToken);
     }
 }

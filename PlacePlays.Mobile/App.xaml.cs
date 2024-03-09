@@ -8,8 +8,9 @@ public partial class App : Application
 {
     public static AuthOptionModel AuthOptions { get; private set; }
     public static HttpClient SpotifyAuth { get; private set; }
+    public static HttpClient SpotifyClient { get; private set; }
 
-    public App(IOptions<AuthOptionModel> authOptions)
+    public App(IOptions<AuthOptionModel> authOptions, IOptions<SpotifyOptionModel> spotifyOptions)
     {
         InitializeComponent();
 
@@ -18,13 +19,18 @@ public partial class App : Application
         
         SpotifyAuth = new HttpClient()
         {
-            BaseAddress = new Uri(authOptions.Value.BaseAuthAddress),
+            BaseAddress = new Uri(authOptions.Value.BaseAddress),
             DefaultRequestHeaders = 
             { 
                 Authorization = new AuthenticationHeaderValue(
                 "Basic", 
                 AuthExtensions.GetBase64String(authOptions.Value.ClientId, authOptions.Value.ClientSecret))
             }
+        };
+
+        SpotifyClient = new HttpClient()
+        {
+            BaseAddress = new Uri(spotifyOptions.Value.BaseAddress)
         };
     }
 }

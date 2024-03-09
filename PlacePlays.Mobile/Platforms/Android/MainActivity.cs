@@ -24,7 +24,7 @@ public class MainActivity : MauiAppCompatActivity
         
         var response = !string.IsNullOrWhiteSpace(code) && await AuthHelper.PostForToken(code);
 
-        if (!response || Intent.ActionView != intent.Action)
-            throw new Exception();
+        if (response && Intent.ActionView == intent.Action)
+            await Shell.Current.GoToAsync(nameof(MainPage));
     }
 }
