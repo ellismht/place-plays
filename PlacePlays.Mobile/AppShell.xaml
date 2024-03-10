@@ -8,7 +8,7 @@
     Title="PlacePlays.Mobile">
 
     <ShellContent
-        Title="Home"
+        Title="Authentication"
         ContentTemplate="{DataTemplate pages:AuthPage}"
         Route="AuthPage" />
 

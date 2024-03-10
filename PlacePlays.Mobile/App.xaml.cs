@@ -6,7 +6,6 @@ namespace PlacePlays.Mobile;
 
 public partial class App : Application
 {
-    public static AuthOptionModel AuthOptions { get; private set; }
     public static HttpClient SpotifyAuth { get; private set; }
     public static HttpClient SpotifyClient { get; private set; }
 
@@ -15,7 +14,6 @@ public partial class App : Application
         InitializeComponent();
 
         MainPage = new AppShell();
-        AuthOptions = authOptions.Value;
         
         SpotifyAuth = new HttpClient()
         {

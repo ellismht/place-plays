@@ -1,11 +1,14 @@
-using PlacePlays.Mobile.Helpers;
+using PlacePlays.Mobile.Services.Auth;
 
 namespace PlacePlays.Mobile.Pages;
 
 public partial class AuthPage : ContentPage
 {
-    public AuthPage()
+    private readonly IAuthService _authService;
+
+    public AuthPage(IAuthService authService)
     {
+        _authService = authService;
         InitializeComponent();
     }
 
@@ -13,6 +16,6 @@ public partial class AuthPage : ContentPage
     {
         base.OnAppearing();
         
-        await AuthHelper.GetAccessToken();
+        await _authService.GetAccessToken();
     }
 }

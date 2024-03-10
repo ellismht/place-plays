@@ -1,8 +1,9 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using PlacePlays.Mobile.Helpers;
 using PlacePlays.Mobile.Models;
+using PlacePlays.Mobile.Pages;
+using PlacePlays.Mobile.Services.Auth;
 
 namespace PlacePlays.Mobile;
 
@@ -21,10 +22,16 @@ public class MainActivity : MauiAppCompatActivity
         base.OnNewIntent(intent);
         
         var code = intent.Data.GetQueryParameter(AuthParamsInfo.CodeParamName);
-        
-        var response = !string.IsNullOrWhiteSpace(code) && await AuthHelper.PostForToken(code);
+        var state = intent.Data.GetQueryParameter(AuthParamsInfo.StateParamName);
 
-        if (response && Intent.ActionView == intent.Action)
+        var authService = IPlatformApplication.Current.Services.GetRequiredService<IAuthService>();
+        
+        var isSuccess = !string.IsNullOrWhiteSpace(code) 
+                       && state != null
+                       && await authService.PostForToken(code)
+                       && state.Equals(authService.GetState());
+
+        if (isSuccess && Intent.ActionView == intent.Action)
             await Shell.Current.GoToAsync(nameof(MainPage));
     }
 }

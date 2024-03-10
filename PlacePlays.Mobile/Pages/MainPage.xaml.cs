@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace PlacePlays.Mobile;
+﻿namespace PlacePlays.Mobile.Pages;
 
 public partial class MainPage : ContentPage
 {
@@ -9,6 +7,17 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        
+        var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(5));
+
+        var cancelTokenSource = new CancellationTokenSource();
+
+        var location = await Geolocation.Default.GetLocationAsync(request, cancelTokenSource.Token);
     }
 
     private void OnCounterClicked(object sender, EventArgs e)

@@ -19,7 +19,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
 
         <!-- Display name -->
-        <ApplicationTitle>PlacePlays.Mobile</ApplicationTitle>
+        <ApplicationTitle>PlacePlays</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.placeplays.mobile</ApplicationId>
@@ -28,7 +28,9 @@
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
         
-        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">29.0</SupportedOSPlatformVersion>
+        
+        <Product>PlacePlays.Mobile</Product>
     </PropertyGroup>
 
     <ItemGroup>
@@ -68,7 +70,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Services\" />
+      <MauiXaml Update="Pages\MainPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\MainPage.xaml.cs">
+        <DependentUpon>MainPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>
