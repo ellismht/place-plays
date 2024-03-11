@@ -1,17 +1,23 @@
-﻿namespace PlacePlays.Mobile.Pages;
+﻿using PlacePlays.Mobile.Services.Spotify;
+
+namespace PlacePlays.Mobile.Pages;
 
 public partial class MainPage : ContentPage
 {
+    private readonly IClientService _client;
     int count = 0;
 
-    public MainPage()
+    public MainPage(IClientService client)
     {
+        _client = client;
         InitializeComponent();
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        await _client.GetCurrentlyPlayingTrack();
         
         var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(5));
 

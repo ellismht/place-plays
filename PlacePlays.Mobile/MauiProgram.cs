@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using PlacePlays.Mobile.Models.OptionModels;
 using PlacePlays.Mobile.Pages;
 using PlacePlays.Mobile.Services.Auth;
+using PlacePlays.Mobile.Services.Spotify;
 
 namespace PlacePlays.Mobile;
 
@@ -37,6 +38,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<AuthPage>();
 
         builder.Services.AddSingleton<IAuthService, SpotifyAuthService>();
+        builder.Services.AddSingleton<IClientService, SpotifyClientService>();
 
 #if DEBUG
         builder.Logging.AddDebug();
