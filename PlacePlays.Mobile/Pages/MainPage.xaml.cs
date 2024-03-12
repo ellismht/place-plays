@@ -17,7 +17,7 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        await _client.GetCurrentlyPlayingTrack();
+        var currentlyPlayingTrack = await _client.GetCurrentlyPlayingTrack();
         
         var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(5));
 
