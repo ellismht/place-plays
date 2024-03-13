@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using PlacePlays.Mobile.Models.Enums;
 
 namespace PlacePlays.Mobile.Models.Spotify;
