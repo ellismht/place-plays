@@ -13,7 +13,6 @@ public partial class MainPage : ContentPage
         _client = client;
 
         BindingContext = viewModel;
-        Title = "Main Page";
     }
 
     protected override async void OnAppearing()
