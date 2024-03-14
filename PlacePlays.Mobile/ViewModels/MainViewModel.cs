@@ -29,12 +29,12 @@ public partial class MainViewModel : BaseViewModel
 
         if (track.Item is null)
         {
-            mainInfo = "Niczego nie słuchasz";
+            MainInfo = "Niczego nie słuchasz";
             return;
         }
 
-        trackName = track.Item.Name;
-        artistName = track.Item.Artists[0].Name;
-        mainInfo = string.Empty;
+        TrackName = track.Item.Name;
+        ArtistName = track.Item.Artists[0].Name;
+        MainInfo = string.Empty;
     }
 }
