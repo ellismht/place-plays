@@ -26,7 +26,7 @@ public partial class MainViewModel : BaseViewModel
     private async Task GetCurrentlyPlayingTrack()
     {
         var track = await _client.GetCurrentlyPlayingTrack();
-
+        
         if (track.Item is null)
         {
             MainInfo = "Niczego nie słuchasz";
