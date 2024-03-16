@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using PlacePlays.Application.Models.Options;
 using PlacePlays.Infrastructure.DAL;
+using PlacePlays.Infrastructure.DAL.LiteDB;
 using PlacePlays.Infrastructure.DAL.Repositories;
 
 namespace PlacePlays.Infrastructure;
@@ -16,6 +17,8 @@ public static class Extensions
         {
             client.BaseAddress = new Uri("https://accounts.spotify.com/");
         });
+
+        services.AddSingleton<SpotifyLiteDbContext>();
         
         return services;
     } 
