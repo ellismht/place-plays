@@ -15,6 +15,7 @@ public class SpotifyRepository : ISpotifyRepository
     public ValueTask AddTrackWithGps(SpotifyLiteDbModel item)
     {
         _collection.Insert(item);
+        _collection.EnsureIndex(x => x.Id);
 
         return ValueTask.CompletedTask;
     }
