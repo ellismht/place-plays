@@ -4,9 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PlacePlays.Mobile.Models.OptionModels;
 using PlacePlays.Mobile.Pages;
+using PlacePlays.Mobile.Services;
 using PlacePlays.Mobile.Services.Auth;
 using PlacePlays.Mobile.Services.Spotify;
 using PlacePlays.Mobile.ViewModels;
+using Shiny;
 
 namespace PlacePlays.Mobile;
 
@@ -21,12 +23,15 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .UseShiny()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        builder.Services.AddGps<LocationDelegate>();
+        
         var ass = Assembly.GetExecutingAssembly();
         using var stream = ass.GetManifestResourceStream("PlacePlays.Mobile.appsettings.json");
         var config = new ConfigurationBuilder().AddJsonStream(stream).Build();

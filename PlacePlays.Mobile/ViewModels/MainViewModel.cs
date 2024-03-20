@@ -2,16 +2,19 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PlacePlays.Mobile.Models.Spotify;
 using PlacePlays.Mobile.Services.Spotify;
+using Shiny.Locations;
 
 namespace PlacePlays.Mobile.ViewModels;
 
 public partial class MainViewModel : BaseViewModel
 {
     private readonly IClientService _client;
+    private readonly IGpsManager _gpsManager;
 
-    public MainViewModel(IClientService client)
+    public MainViewModel(IClientService client, IGpsManager gpsManager)
     {
         _client = client;
+        _gpsManager = gpsManager;
         Title = "Main Page";
         mainInfo = "Nie wiem czego słuchasz";
     }
@@ -48,6 +51,19 @@ public partial class MainViewModel : BaseViewModel
         TrackName = track.Item.Name;
         ArtistName = track.Item.Artists[0].Name;
         MainInfo = string.Empty;
+        
+        
+        
+        var smth = await _gpsManager.RequestAccess(new GpsRequest
+        {
+            BackgroundMode = GpsBackgroundMode.Realtime
+        });
+        
+        await _gpsManager.StartListener(new GpsRequest
+        {
+            BackgroundMode = GpsBackgroundMode.Realtime
+        });
+
     }
 
     private async Task CheckPermission()

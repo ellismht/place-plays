@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using Microsoft.Extensions.Options;
 using PlacePlays.Mobile.Models.OptionModels;
+using Shiny.Locations;
 
 namespace PlacePlays.Mobile;
 
@@ -9,7 +10,7 @@ public partial class App : Application
     public static HttpClient SpotifyAuth { get; private set; }
     public static HttpClient SpotifyClient { get; private set; }
 
-    public App(IOptions<AuthOptionModel> authOptions, IOptions<SpotifyOptionModel> spotifyOptions)
+    public App(IOptions<AuthOptionModel> authOptions, IOptions<SpotifyOptionModel> spotifyOptions, IGpsManager gpsManager)
     {
         InitializeComponent();
 
