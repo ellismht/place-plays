@@ -1,15 +1,14 @@
-using Microsoft.Extensions.Logging;
 using Shiny;
 using Shiny.Locations;
 namespace PlacePlays.Mobile.Services;
 
-public partial class LocationDelegate : GpsDelegate
+public partial class LocationDelegate : IGpsDelegate
 {
-    public LocationDelegate(ILogger logger) : base(logger)
+    public LocationDelegate()
     {
     }
 
-    protected override Task OnGpsReading(GpsReading reading)
+    public Task OnReading(GpsReading reading)
     {
         var smth = reading;
         
@@ -18,7 +17,7 @@ public partial class LocationDelegate : GpsDelegate
 }
 
 #if ANDROID
-public partial class MyGpsDelegate : IAndroidForegroundServiceDelegate
+public partial class LocationDelegate : IAndroidForegroundServiceDelegate
 {
     public void Configure(AndroidX.Core.App.NotificationCompat.Builder builder)
     {
