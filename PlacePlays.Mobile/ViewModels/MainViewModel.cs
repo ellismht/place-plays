@@ -31,17 +31,6 @@ public partial class MainViewModel : BaseViewModel
     {
         await CheckPermission();
         
-          
-        var smth = await _gpsManager.RequestAccess(new GpsRequest
-        {
-            BackgroundMode = GpsBackgroundMode.Realtime
-        });
-        
-        await _gpsManager.StartListener(new GpsRequest
-        {
-            BackgroundMode = GpsBackgroundMode.Realtime
-        });
-        
         var track = await _client.GetCurrentlyPlayingTrack();
         
         if (track.Item is null)

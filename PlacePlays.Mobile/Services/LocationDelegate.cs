@@ -21,7 +21,7 @@ public partial class LocationDelegate : IAndroidForegroundServiceDelegate
 {
     public void Configure(AndroidX.Core.App.NotificationCompat.Builder builder)
     {
-        
+        builder.SetContentTitle("PlacePlays").SetContentText("Sprawdzamy czego słuchasz").Build();
     }
 }
 #endif
