@@ -12,4 +12,6 @@ public class ItemSpotifyModel : BaseSpotifyModel
     [JsonPropertyName("track_number")]
     public int TrackNumber { get; set; }
     public ObjectTypeSpotify ObjectType { get; set; }
+    [JsonPropertyName("duration_ms")]
+    public int DurationMs { get; set; }
 }

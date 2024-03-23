@@ -8,4 +8,5 @@ public class ResponseSpotifyModel
     [JsonPropertyName("progress_ms")]
     public int ProgeressMs { get; set; }
     public ItemSpotifyModel Item { get; set; }
+    public int TrackRemainingMs => Item.DurationMs - ProgeressMs;
 }

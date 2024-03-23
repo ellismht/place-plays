@@ -12,7 +12,7 @@ public class SpotifyClientService : IClientService
     {
         var response = await App.SpotifyClient.GetAsync(
             BaseRequestUri + "/currently-playing");
-
+        
         if (response.StatusCode != HttpStatusCode.OK) 
             return new ResponseSpotifyModel();
         
