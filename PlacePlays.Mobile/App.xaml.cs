@@ -8,8 +8,9 @@ public partial class App : Application
 {
     public static HttpClient SpotifyAuth { get; private set; }
     public static HttpClient SpotifyClient { get; private set; }
+    public static HttpClient ApiClient { get; private set; }
 
-    public App(IOptions<AuthOptionModel> authOptions, IOptions<SpotifyOptionModel> spotifyOptions)
+    public App(IOptions<AuthOptionModel> authOptions, IOptions<SpotifyOptionModel> spotifyOptions, IOptions<ApiOptionModel> apiOptions)
     {
         InitializeComponent();
 
@@ -29,6 +30,11 @@ public partial class App : Application
         SpotifyClient = new HttpClient()
         {
             BaseAddress = new Uri(spotifyOptions.Value.BaseAddress)
+        };
+        
+        ApiClient = new HttpClient()
+        {
+            BaseAddress = new Uri(apiOptions.Value.BaseAddress),
         };
     }
 }

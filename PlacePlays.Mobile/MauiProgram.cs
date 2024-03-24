@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using PlacePlays.Mobile.Models.OptionModels;
 using PlacePlays.Mobile.Pages;
 using PlacePlays.Mobile.Services;
+using PlacePlays.Mobile.Services.Api;
 using PlacePlays.Mobile.Services.Auth;
 using PlacePlays.Mobile.Services.Spotify;
 using PlacePlays.Mobile.ViewModels;
@@ -16,6 +17,7 @@ public static class MauiProgram
 {
     private const string AuthSectionName = "Auth"; 
     private const string SpotifySectionName = "Spotify"; 
+    private const string ApiSectionName = "Api"; 
     
     public static MauiApp CreateMauiApp()
     {
@@ -39,6 +41,7 @@ public static class MauiProgram
 
         builder.Services.Configure<AuthOptionModel>(builder.Configuration.GetSection(AuthSectionName));
         builder.Services.Configure<SpotifyOptionModel>(builder.Configuration.GetSection(SpotifySectionName));
+        builder.Services.Configure<ApiOptionModel>(builder.Configuration.GetSection(ApiSectionName));
         
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<AuthPage>();
@@ -47,6 +50,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<IAuthService, SpotifyAuthService>();
         builder.Services.AddSingleton<IClientService, SpotifyClientService>();
+        
+        builder.Services.AddSingleton<IApiService, ApiService>();
 
 #if DEBUG
         builder.Logging.AddDebug();
