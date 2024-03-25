@@ -1,25 +1,24 @@
-﻿namespace PlacePlays.WebApi.Endpoints;
+﻿using PlacePlays.Application.Mappers;
+using PlacePlays.Application.Models;
+using PlacePlays.Infrastructure.DAL;
+
+namespace PlacePlays.WebApi.Endpoints;
 
 public static class SpotifyEndpoints
 {
     public static RouteGroupBuilder MapSpotifyEndpoints(this RouteGroupBuilder group)
     {
-        group.MapGet("TestGetInfo", TestGetInfo);
-        
-        group.MapGet("GetAuth", GetAuth);
+        group.MapPost("saveTrackLocationInfo", SaveTrackLocationInfo);
         
         return group;
     }
 
-    public static async Task<IResult> TestGetInfo()
+    public static async Task<IResult> SaveTrackLocationInfo(SaveTrackLocationRequest body, ISpotifyRepository repository)
     {
+        var spotifyItem = body.Map();
 
-        return TypedResults.Ok();
-    }
-    
-    public static async Task<IResult> GetAuth()
-    {
-
+        await repository.AddTrackWithGps(spotifyItem);
+        
         return TypedResults.Ok();
     }
 }

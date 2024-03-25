@@ -19,7 +19,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGroup("/spotify")
+app.MapGroup("/api")
     .MapSpotifyEndpoints();
 
 app.UseHttpsRedirection();

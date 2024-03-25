@@ -1,4 +1,4 @@
-namespace PlacePlays.Application.Models;
+namespace PlacePlays.Application.Models.LiteDb;
 
 public class SpotifyLiteDbModel
 {

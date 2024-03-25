@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using PlacePlays.Application.Models;
+using PlacePlays.Application.Models.LiteDb;
 using PlacePlays.Application.Models.Options;
 
 namespace PlacePlays.Infrastructure.DAL.LiteDB;

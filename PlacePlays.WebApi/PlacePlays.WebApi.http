@@ -1,6 +1,17 @@
-@PlacePlays.WebApi_HostAddress = http://localhost:5176
+@PlacePlays.WebApi_HostAddress = https://localhost:7202
 
 GET {{PlacePlays.WebApi_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+POST {{PlacePlays.WebApi_HostAddress}}/api/saveTrackLocationInfo
+Content-Type: application/json
+
+{
+  "Id": "jakies",
+  "Lat": 32.0,
+  "Lon": 41.5,
+  "AddDate": "2024-01-01"
+}
 
 ###

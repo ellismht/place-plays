@@ -13,10 +13,7 @@ public static class Extensions
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<LiteDbOptions>(configuration.GetSection(LiteDbSectionName));
-        services.AddHttpClient<ISpotifyRepository, SpotifyRepository>(client =>
-        {
-            client.BaseAddress = new Uri("https://accounts.spotify.com/");
-        });
+        services.AddScoped<ISpotifyRepository, SpotifyRepository>();
 
         services.AddSingleton<SpotifyLiteDbContext>();
         

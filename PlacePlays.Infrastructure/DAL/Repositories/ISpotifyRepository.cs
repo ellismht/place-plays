@@ -1,4 +1,5 @@
 ﻿using PlacePlays.Application.Models;
+using PlacePlays.Application.Models.LiteDb;
 
 namespace PlacePlays.Infrastructure.DAL;
 

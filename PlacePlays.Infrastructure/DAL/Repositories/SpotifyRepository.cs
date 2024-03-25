@@ -1,5 +1,6 @@
 ﻿using LiteDB;
 using PlacePlays.Application.Models;
+using PlacePlays.Application.Models.LiteDb;
 using PlacePlays.Infrastructure.DAL.LiteDB;
 
 namespace PlacePlays.Infrastructure.DAL.Repositories;
