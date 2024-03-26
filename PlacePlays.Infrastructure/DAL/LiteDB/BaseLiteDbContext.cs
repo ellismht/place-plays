@@ -30,8 +30,7 @@ public abstract class BaseLiteDbContext<T> : IDisposable
     {
         if (_db is not null) return;
         
-        var localization = $@"\\{Environment.MachineName}" + liteDbLocation;
-        _db = new LiteDatabase($"Filename={localization}; Connection=Direct;");
+        _db = new LiteDatabase($"Filename={liteDbLocation}; Connection=Direct;");
         Collection = _db.GetCollection<T>(collectionName);
         _isDisposed = false;
     }

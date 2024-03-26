@@ -15,7 +15,7 @@ public static class Extensions
         services.Configure<LiteDbOptions>(configuration.GetSection(LiteDbSectionName));
         services.AddScoped<ISpotifyRepository, SpotifyRepository>();
 
-        services.AddSingleton<SpotifyLiteDbContext>();
+        services.AddScoped<SpotifyLiteDbContext>();
         
         return services;
     } 
