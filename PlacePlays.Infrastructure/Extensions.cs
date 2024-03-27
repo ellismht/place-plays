@@ -9,10 +9,12 @@ namespace PlacePlays.Infrastructure;
 
 public static class Extensions
 {
+    private const string MongoDbSectionName = "MongoDb";
     private const string LiteDbSectionName = "LiteDb";
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<LiteDbOptions>(configuration.GetSection(LiteDbSectionName));
+        services.Configure<MongoDbOptions>(configuration.GetSection(MongoDbSectionName));
         services.AddScoped<ISpotifyRepository, SpotifyRepository>();
 
         services.AddScoped<SpotifyLiteDbContext>();
