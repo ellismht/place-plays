@@ -1,6 +1,4 @@
-﻿using PlacePlays.Application.Mappers;
-using PlacePlays.Application.Models;
-using PlacePlays.Infrastructure.DAL;
+﻿using PlacePlays.Application.Models;
 
 namespace PlacePlays.WebApi.Endpoints;
 
@@ -13,11 +11,10 @@ public static class SpotifyEndpoints
         return group;
     }
 
-    public static async Task<IResult> SaveTrackLocationInfo(SaveTrackLocationRequest body, ISpotifyRepository repository)
+    public static async Task<IResult> SaveTrackLocationInfo(SaveTrackLocationRequest body)
     {
-        var spotifyItem = body.Map();
 
-        await repository.AddTrackWithGps(spotifyItem);
+        //await repository.AddTrackWithGps(spotifyItem);
         
         return TypedResults.Ok();
     }
