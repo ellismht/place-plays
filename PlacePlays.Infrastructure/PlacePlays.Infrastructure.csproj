@@ -18,8 +18,4 @@
       <ProjectReference Include="..\PlacePlays.Application\PlacePlays.Application.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="DAL\Repositories\" />
-    </ItemGroup>
-
 </Project>
