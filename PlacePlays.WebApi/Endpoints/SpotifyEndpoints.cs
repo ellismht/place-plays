@@ -1,4 +1,4 @@
-﻿using PlacePlays.Application.Models;
+﻿using PlacePlays.WebApi.Requests;
 
 namespace PlacePlays.WebApi.Endpoints;
 
