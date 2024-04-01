@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using PlacePlays.Application.Models.Options;
+using PlacePlays.Infrastructure.Models;
 
-namespace PlacePlays.Infrastructure.DAL
+namespace PlacePlays.Infrastructure.DAL;
+
+public class MongoDbContext
 {
-    internal class MongoDbContext
+    public readonly IMongoCollection<SpotifyEntity> SpotifyCollection;
+
+    public MongoDbContext(IOptions<MongoDbOptions> options)
     {
+        var client = new MongoClient(options.Value.ConnectionUri);
+        var database = client.GetDatabase(options.Value.DatabaseName);
+        SpotifyCollection = database.GetCollection<SpotifyEntity>(options.Value.CollectionName);   
     }
 }
+

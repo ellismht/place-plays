@@ -1,6 +1,6 @@
 using PlacePlays.Application.Models.Math;
 
-namespace PlacePlays.Infrastructure.Services;
+namespace PlacePlays.Application.Services.Math;
 
 public interface IMathService
 {
