@@ -7,6 +7,6 @@ public static class SpotifyMapper
 {
     public static SpotifyTrackInfo Map(this SaveTrackLocationRequest request)
     {
-        return new SpotifyTrackInfo(request.Id, request.Lat, request.Lon, request.AddDate);
+        return new SpotifyTrackInfo(null,request.Id, request.Lat, request.Lon, request.AddDate);
     }
 }

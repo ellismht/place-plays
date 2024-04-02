@@ -9,7 +9,8 @@ public static class SpotifyMapper
     {
         return new SpotifyEntity
         {
-            TrackId = trackInfo.Id,
+            Id = trackInfo.Id,
+            TrackId = trackInfo.TrackId,
             Latitude = trackInfo.Latitude,
             Longitude = trackInfo.Longitude,
             Date = trackInfo.Date

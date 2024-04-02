@@ -17,6 +17,6 @@ public static class SpotifyEndpoints
     {
         await service.InsertTrackInfo(body.Map());
         
-        return TypedResults.Ok();
+        return TypedResults.Created();
     }
 }
