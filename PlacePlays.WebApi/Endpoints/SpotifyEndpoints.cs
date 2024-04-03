@@ -19,4 +19,11 @@ public static class SpotifyEndpoints
         
         return TypedResults.Created();
     }
+
+    public static async Task<IResult> GetTracksInArea(GetTracksInAreaRequest body, ISpotifyService service)
+    {
+        var result = await service.GetTrackInArea();
+        
+        return TypedResults.Ok(result);
+    }
 }

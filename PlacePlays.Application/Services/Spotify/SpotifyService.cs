@@ -16,4 +16,9 @@ public class SpotifyService : ISpotifyService
     {
         await _repository.InsertTrackInfo(trackInfo);
     }
+
+    public async ValueTask<IEnumerable<SpotifyTrackInfo>> GetTrackInArea()
+    {
+        return await _repository.GetTracksInArea();
+    }
 }
