@@ -4,7 +4,7 @@ namespace PlacePlays.Application.Services.Math;
 
 public class MathService : IMathService
 {
-    private const int EarthRadius = 6371000;
+    private const int EarthRadius = 6371000; //in meters
     private const double ToRadianValue = System.Math.PI / 180;
 
     public double GetDistanceBetweenTwoPoints(Point point1, Point point2)
