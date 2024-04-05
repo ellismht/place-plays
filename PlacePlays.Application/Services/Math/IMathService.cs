@@ -4,5 +4,5 @@ namespace PlacePlays.Application.Services.Math;
 
 public interface IMathService
 {
-    double GetDistanceBetweenTwoPoints(Point point1, Point point2);
+    double GetDistanceBetweenTwoPoints(Point userPoint, Point trackInfoPoint);
 }
