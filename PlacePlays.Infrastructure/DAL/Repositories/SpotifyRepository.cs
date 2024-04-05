@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using PlacePlays.Application.Abstractions;
+using PlacePlays.Application.Services.Math;
 using PlacePlays.Domain.Entities;
 using PlacePlays.Infrastructure.Mapper;
 using PlacePlays.Infrastructure.Models;
@@ -9,7 +10,7 @@ namespace PlacePlays.Infrastructure.DAL.Repositories;
 internal class SpotifyRepository : IRepository
 {
     private readonly MongoDbContext _context;
-    public SpotifyRepository(MongoDbContext context)
+    public SpotifyRepository(MongoDbContext context, IMathService mathService)
     {
         _context = context;
     }
