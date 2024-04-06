@@ -2,7 +2,7 @@ using PlacePlays.Application.Models.Math;
 
 namespace PlacePlays.Application.Services.Math;
 
-public class MathService : IMathService
+public class MathService
 {
     private const int EarthRadius = 6371000; //in meters
     private const double ToRadianValue = System.Math.PI / 180;

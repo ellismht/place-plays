@@ -16,4 +16,9 @@ public static class SpotifyMapper
             Date = trackInfo.Date
         };
     }
+    
+    public static SpotifyTrackInfo Map(this SpotifyEntity spotifyEntity)
+    {
+        return new SpotifyTrackInfo(spotifyEntity.Id, spotifyEntity.TrackId, spotifyEntity.Latitude, spotifyEntity.Longitude, spotifyEntity.Date);
+    }
 }

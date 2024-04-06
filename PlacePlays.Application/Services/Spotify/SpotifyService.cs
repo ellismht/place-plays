@@ -7,12 +7,10 @@ namespace PlacePlays.Application.Services.Spotify;
 public class SpotifyService : ISpotifyService
 {
     private readonly IRepository _repository;
-    private readonly IMathService _mathService;
 
-    public SpotifyService(IRepository repository, IMathService mathService)
+    public SpotifyService(IRepository repository)
     {
         _repository = repository;
-        _mathService = mathService;
     }
     
     public async ValueTask InsertTrackInfo(SpotifyTrackInfo trackInfo)
@@ -20,10 +18,10 @@ public class SpotifyService : ISpotifyService
         await _repository.InsertTrackInfo(trackInfo);
     }
 
-    public async ValueTask<IEnumerable<SpotifyTrackInfo>> GetTracksInArea()
+    public async ValueTask<IEnumerable<SpotifyTrackInfo>> GetTracksInArea(SpotifyTracksInAreaSettings tracksInAreaSettings)
     {
+        
 
-
-        return await _repository.GetTracksInArea();
+        return await _repository.GetTracksInArea(tracksInAreaSettings);
     }
 }

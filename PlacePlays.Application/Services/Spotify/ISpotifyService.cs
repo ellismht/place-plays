@@ -5,5 +5,5 @@ namespace PlacePlays.Application.Services.Spotify;
 public interface ISpotifyService
 {
     ValueTask InsertTrackInfo(SpotifyTrackInfo trackInfo);
-    ValueTask<IEnumerable<SpotifyTrackInfo>> GetTracksInArea();
+    ValueTask<IEnumerable<SpotifyTrackInfo>> GetTracksInArea(SpotifyTracksInAreaSettings tracksInAreaSettings);
 }
