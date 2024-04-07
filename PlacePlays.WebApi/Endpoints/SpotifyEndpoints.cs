@@ -22,7 +22,7 @@ public static class SpotifyEndpoints
         return TypedResults.Created();
     }
 
-    public static async Task<IResult> GetTracksInArea(GetTracksInAreaRequest request, ISpotifyService service)
+    public static async Task<IResult> GetTracksInArea([AsParameters]GetTracksInAreaRequest request, ISpotifyService service)
     {
         var result = await service.GetTracksInArea(request.Map());
         

@@ -57,7 +57,6 @@ public partial class LocationDelegate : IAndroidForegroundServiceDelegate
     {
         builder.SetContentTitle("PlacePlays")
             .SetContentText("Sprawdzamy czego słuchasz")
-            .SetSmallIcon(Microsoft.Maui.Resource.Mipmap.appicon)
             .Build();
     }
 }
