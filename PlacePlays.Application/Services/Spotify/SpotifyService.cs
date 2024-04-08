@@ -20,8 +20,6 @@ public class SpotifyService : ISpotifyService
 
     public async ValueTask<IEnumerable<SpotifyTrackInfo>> GetTracksInArea(SpotifyTracksInAreaSettings tracksInAreaSettings)
     {
-        
-
         return await _repository.GetTracksInArea(tracksInAreaSettings);
     }
 }

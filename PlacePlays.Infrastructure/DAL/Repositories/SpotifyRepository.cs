@@ -4,7 +4,6 @@ using PlacePlays.Application.Models.Math;
 using PlacePlays.Application.Services.Math;
 using PlacePlays.Domain.Entities;
 using PlacePlays.Infrastructure.Mapper;
-using PlacePlays.Infrastructure.Models;
 
 namespace PlacePlays.Infrastructure.DAL.Repositories;
 
@@ -28,7 +27,7 @@ internal class SpotifyRepository : IRepository
         var calculator = new MathService(userLocationPoint);
         
         var result = await (await _context.SpotifyCollection
-            .FindAsync(entity => calculator.GetDistanceBetweenTwoPoints(userLocationPoint, new Point(entity.Latitude, entity.Longitude)) <= tracksInAreaSettings.Radius))
+            .FindAsync(entity => calculator.GetDistanceBetweenTwoPoints(new Point(entity.Latitude, entity.Longitude)) <= tracksInAreaSettings.Radius))
             .ToListAsync();
 
         return result.Select(x=> x.Map());
