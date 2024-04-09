@@ -1,6 +1,5 @@
 ﻿using MongoDB.Driver;
 using PlacePlays.Application.Abstractions;
-using PlacePlays.Application.Models.Math;
 using PlacePlays.Application.Services.Math;
 using PlacePlays.Domain.Entities;
 using PlacePlays.Infrastructure.Mapper;
@@ -23,11 +22,11 @@ internal class SpotifyRepository : IRepository
 
     public async ValueTask<IEnumerable<SpotifyTrackInfo>> GetTracksInArea(SpotifyTracksInAreaSettings tracksInAreaSettings)
     {
-        var userLocationPoint = new Point(tracksInAreaSettings.Lat, tracksInAreaSettings.Lon);
-        var calculator = new MathService(userLocationPoint);
+        var userLocationPoint = new Point { Lat = tracksInAreaSettings.Lat, Lon = tracksInAreaSettings.Lon};
+        var calculator = new DistanceCalculator(userLocationPoint);
         
         var result = await (await _context.SpotifyCollection
-            .FindAsync(entity => calculator.GetDistanceBetweenTwoPoints(new Point(entity.Latitude, entity.Longitude)) <= tracksInAreaSettings.Radius))
+            .FindAsync(entity => calculator.GetDistanceBetweenTwoPoints(new Point { Lat = entity.Latitude, Lon = entity.Longitude }) <= tracksInAreaSettings.Radius))
             .ToListAsync();
 
         return result.Select(x=> x.Map());

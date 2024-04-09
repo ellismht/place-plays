@@ -1,22 +1,22 @@
-using PlacePlays.Application.Models.Math;
+using PlacePlays.Domain.Entities;
 
 namespace PlacePlays.Application.Services.Math;
 
-public class MathService
+public class DistanceCalculator
 {
     private const int EarthRadius = 6371000; //in meters
     private const double ToRadianValue = System.Math.PI / 180;
     private readonly double _userCosLatRadian;
     private readonly Point _userLocation;
 
-    public MathService(Point userLocation)
+    public DistanceCalculator(in Point userLocation)
     {
         _userLocation = userLocation;
         var userLatRadian = _userLocation.Lat * ToRadianValue;
         _userCosLatRadian = System.Math.Cos(userLatRadian);
     }
 
-    public double GetDistanceBetweenTwoPoints(Point trackInfoPoint)
+    public double GetDistanceBetweenTwoPoints(in Point trackInfoPoint)
     {
         var phi2 = trackInfoPoint.Lat * ToRadianValue;
 
