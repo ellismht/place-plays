@@ -16,12 +16,12 @@ public class DistanceCalculator
         _userCosLatRadian = System.Math.Cos(userLatRadian);
     }
 
-    public double GetDistanceBetweenTwoPoints(in Point trackInfoPoint)
+    public double GetDistanceBetweenTwoPoints(in double trackInfoLat, in double trackInfoLon)
     {
-        var phi2 = trackInfoPoint.Lat * ToRadianValue;
+        var phi2 = trackInfoLat * ToRadianValue;
 
-        var deltaPhi = System.Math.Sin((trackInfoPoint.Lat - _userLocation.Lat) * ToRadianValue/2);
-        var deltaLambda = System.Math.Sin((trackInfoPoint.Lon - _userLocation.Lon) * ToRadianValue/2);
+        var deltaPhi = System.Math.Sin((trackInfoLat - _userLocation.Lat) * ToRadianValue/2);
+        var deltaLambda = System.Math.Sin((trackInfoLon - _userLocation.Lon) * ToRadianValue/2);
 
         var a = System.Math.Pow(deltaPhi, 2) + _userCosLatRadian * System.Math.Cos(phi2) * System.Math.Pow(deltaLambda, 2);
         

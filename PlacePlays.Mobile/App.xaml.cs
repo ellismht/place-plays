@@ -34,7 +34,7 @@ public partial class App : Application
         
         ApiClient = new HttpClient()
         {
-            BaseAddress = new Uri(apiOptions.Value.BaseAddress),
+            BaseAddress = new Uri(apiOptions.Value.BaseAddress)
         };
     }
 }

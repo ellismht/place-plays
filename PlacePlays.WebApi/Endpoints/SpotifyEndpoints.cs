@@ -1,5 +1,5 @@
 ﻿using PlacePlays.Application.Services.Spotify;
-using PlacePlays.WebApi.Mapper;
+using PlacePlays.Domain.Entities;
 using PlacePlays.WebApi.Requests;
 
 namespace PlacePlays.WebApi.Endpoints;
@@ -11,21 +11,31 @@ public static class SpotifyEndpoints
         group.MapPost("saveTrackLocationInfo", SaveTrackLocationInfo);
 
         group.MapGet("getTracksInArea", GetTracksInArea);
+        group.MapGet("test", Test);
         
         return group;
     }
 
     public static async Task<IResult> SaveTrackLocationInfo(SaveTrackLocationRequest request, ISpotifyService service)
     {
-        await service.InsertTrackInfo(request.Map());
+        var trackInfo = new SpotifyTrackInfo(null, request.Id, request.Lat, request.Lon, request.AddDate);
+        await service.InsertTrackInfo(trackInfo);
         
         return TypedResults.Created();
     }
 
     public static async Task<IResult> GetTracksInArea([AsParameters]GetTracksInAreaRequest request, ISpotifyService service)
     {
-        var result = await service.GetTracksInArea(request.Map());
+        var tracksInAreaSettings = new SpotifyTracksInAreaSettings(request.Lat, request.Lon, request.Radius);
+        var result = await service.GetTracksInArea(tracksInAreaSettings);
         
         return TypedResults.Ok(result);
     }
+    
+        public static async Task<IResult> Test()
+        {
+            
+            
+            return TypedResults.Ok(5);
+        }
 }

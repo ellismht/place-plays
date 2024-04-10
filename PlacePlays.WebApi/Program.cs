@@ -22,6 +22,6 @@ if (app.Environment.IsDevelopment())
 app.MapGroup("/api")
     .MapSpotifyEndpoints();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.Run();
