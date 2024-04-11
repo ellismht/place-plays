@@ -29,7 +29,7 @@
         <ApplicationVersion>1</ApplicationVersion>
         
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">29.0</SupportedOSPlatformVersion>
-        
+        <RunAOTCompilation>false</RunAOTCompilation>
         <Product>PlacePlays.Mobile</Product>
     </PropertyGroup>
 
