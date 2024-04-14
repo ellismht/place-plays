@@ -23,6 +23,7 @@ public class ApiService : IApiService
         }
         catch(Exception e)
         {
+            var smth = e;
             throw;
         }
         //TODO
