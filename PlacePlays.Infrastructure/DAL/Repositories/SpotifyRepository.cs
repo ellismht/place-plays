@@ -26,12 +26,11 @@ internal class SpotifyRepository : IRepository
         var userLocationPoint = new Point { Lat = tracksInAreaSettings.Lat, Lon = tracksInAreaSettings.Lon};
         var calculator = new DistanceCalculator(userLocationPoint);
 
-        var filter = Builders<SpotifyEntity>.Filter
-            .Where(x => calculator.GetDistanceBetweenTwoPoints(x.Latitude, x.Longitude) <= tracksInAreaSettings.Radius);
         var filterEmpty = Builders<SpotifyEntity>.Filter.Empty;
-        var smth = await (await _context.SpotifyCollection.FindAsync(filterEmpty)).ToListAsync();
+        var smth = await _context.SpotifyCollection.FindAsync(filterEmpty);
         
-        var result = await (await _context.SpotifyCollection.FindAsync(filter)).ToListAsync();
+        var result = smth.ToEnumerable().Where(x =>
+            calculator.GetDistanceBetweenTwoPoints(x.Latitude, x.Longitude) <= tracksInAreaSettings.Radius).ToList();
 
         return result.Select(x=> x.Map());
     }

@@ -4,7 +4,7 @@ namespace PlacePlays.Application.Services.Math;
 
 public class DistanceCalculator
 {
-    private const int EarthRadius = 6371000; //in meters
+    private const int EarthRadius = 6371; //in km
     private const double ToRadianValue = System.Math.PI / 180;
     private readonly double _userCosLatRadian;
     private readonly Point _userLocation;
