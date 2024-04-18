@@ -88,4 +88,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PlacePlays.Domain\PlacePlays.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

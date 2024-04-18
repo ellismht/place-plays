@@ -2,6 +2,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using PlacePlays.Domain.Entities;
 using PlacePlays.Mobile.Models.Spotify;
 
 namespace PlacePlays.Mobile.Services.Api;
@@ -13,6 +14,14 @@ public class ApiService : IApiService
     
     public async ValueTask PostSpotifyRecord(SpotifyRecord record)
     {
-        var response = await App.ApiClient.PostAsJsonAsync($"{BaseGroupEndpoint}{PostSpotifyRecordEndpoint}", record);
+        var response = await App.ApiClient.PostAsJsonAsync($"{BaseGroupEndpoint}/saveTrackLocationInfo", record);
+    }
+
+    public async ValueTask<IEnumerable<SpotifyRecord>> GetTracksInUserLocation(SpotifyTracksInAreaSettings tracksInAreaSettings)
+    {
+        var response = await App.ApiClient.GetFromJsonAsync<IEnumerable<SpotifyRecord>>
+            ($"{BaseGroupEndpoint}/getTracksInArea?lat={tracksInAreaSettings.Lat}&lon={tracksInAreaSettings.Lon}&radius={tracksInAreaSettings.Radius}");
+
+        return response;
     }
 }

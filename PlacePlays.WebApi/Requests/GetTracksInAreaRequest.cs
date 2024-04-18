@@ -1,3 +1,3 @@
 namespace PlacePlays.WebApi.Requests;
 
-public record GetTracksInAreaRequest(double Lon, double Lat, int Radius);
+public record GetTracksInAreaRequest(double Lat, double Lon, int Radius);
