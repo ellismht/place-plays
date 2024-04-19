@@ -11,7 +11,6 @@ public static class SpotifyEndpoints
         group.MapPost("saveTrackLocationInfo", SaveTrackLocationInfo);
 
         group.MapGet("getTracksInArea", GetTracksInArea);
-        group.MapGet("test", Test);
         
         return group;
     }
@@ -31,11 +30,4 @@ public static class SpotifyEndpoints
         
         return TypedResults.Ok(result);
     }
-    
-        public static async Task<IResult> Test()
-        {
-            
-            
-            return TypedResults.Ok(5);
-        }
 }
