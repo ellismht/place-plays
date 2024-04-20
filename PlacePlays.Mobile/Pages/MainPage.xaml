@@ -4,6 +4,7 @@
              x:Class="PlacePlays.Mobile.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:PlacePlays.Mobile.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodel:MainViewModel"
              Title="{Binding Title}">
 
     <ScrollView>
@@ -18,6 +19,11 @@
             
             <Label Text="{Binding TrackName}"/>
             <Label Text="{Binding ArtistName}"/>
+            
+            <Label Text="{Binding MainInfo}"/>
+            
+            <Button Text="Poka te w okolicy"
+                    Command="{Binding GetTracksInAreaCommand}"/>
 
         </VerticalStackLayout>
     </ScrollView>

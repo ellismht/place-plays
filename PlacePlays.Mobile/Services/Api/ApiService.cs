@@ -17,9 +17,9 @@ public class ApiService : IApiService
         var response = await App.ApiClient.PostAsJsonAsync($"{BaseGroupEndpoint}/saveTrackLocationInfo", record);
     }
 
-    public async ValueTask<IEnumerable<SpotifyRecord>> GetTracksInUserLocation(SpotifyTracksInAreaSettings tracksInAreaSettings)
+    public async ValueTask<IEnumerable<SpotifyTrackInfo>> GetTracksInUserLocation(SpotifyTracksInAreaSettings tracksInAreaSettings)
     {
-        var response = await App.ApiClient.GetFromJsonAsync<IEnumerable<SpotifyRecord>>
+        var response = await App.ApiClient.GetFromJsonAsync<IEnumerable<SpotifyTrackInfo>>
             ($"{BaseGroupEndpoint}/getTracksInArea?lat={tracksInAreaSettings.Lat}&lon={tracksInAreaSettings.Lon}&radius={tracksInAreaSettings.Radius}");
 
         return response;
