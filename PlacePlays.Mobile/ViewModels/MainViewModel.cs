@@ -50,14 +50,4 @@ public partial class MainViewModel : BaseViewModel
         var settings = new SpotifyTracksInAreaSettings(37.4220936, -122.083922, 50);
         var tracks = await _api.GetTracksInUserLocation(settings);
     }
-
-    private static async Task CheckPermission()
-    {
-        while (true)
-        {
-            var status = await Permissions.RequestAsync<Permissions.LocationAlways>();
-
-            if (status is PermissionStatus.Granted) return;
-        }
-    }
 }
