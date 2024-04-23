@@ -1,4 +1,4 @@
-namespace PlacePlays.Application.Models.Options;
+namespace PlacePlays.WebApi.Models;
 
 public class MongoDbOptions
 {

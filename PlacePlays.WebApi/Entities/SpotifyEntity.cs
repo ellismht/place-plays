@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace PlacePlays.Infrastructure.Models;
+namespace PlacePlays.WebApi.Entities;
 
 public class SpotifyEntity
 {

@@ -16,4 +16,8 @@
       <ProjectReference Include="..\PlacePlays.Domain\PlacePlays.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Models\Options\" />
+    </ItemGroup>
+
 </Project>

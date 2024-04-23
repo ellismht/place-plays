@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using PlacePlays.Application.Models.Options;
-using PlacePlays.Infrastructure.Models;
+using PlacePlays.WebApi.Entities;
+using PlacePlays.WebApi.Models;
 
-namespace PlacePlays.Infrastructure.DAL;
+namespace PlacePlays.WebApi.DAL;
 
 public class MongoDbContext
 {
