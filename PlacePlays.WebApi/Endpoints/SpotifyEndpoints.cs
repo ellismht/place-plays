@@ -1,6 +1,6 @@
-﻿using PlacePlays.Application.Services.Spotify;
-using PlacePlays.Domain.Entities;
+﻿using PlacePlays.WebApi.Entities;
 using PlacePlays.WebApi.Requests;
+using PlacePlays.WebApi.Services.Spotify;
 
 namespace PlacePlays.WebApi.Endpoints;
 

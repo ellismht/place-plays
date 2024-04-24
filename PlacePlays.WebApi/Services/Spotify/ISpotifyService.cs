@@ -1,6 +1,6 @@
-using PlacePlays.Domain.Entities;
+using PlacePlays.WebApi.Entities;
 
-namespace PlacePlays.Application.Services.Spotify;
+namespace PlacePlays.WebApi.Services.Spotify;
 
 public interface ISpotifyService
 {

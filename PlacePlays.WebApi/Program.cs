@@ -1,5 +1,4 @@
 using PlacePlays.Application;
-using PlacePlays.Infrastructure;
 using PlacePlays.WebApi.DAL;
 using PlacePlays.WebApi.Endpoints;
 using PlacePlays.WebApi.Models;
@@ -7,9 +6,6 @@ using PlacePlays.WebApi.Models;
 const string MongoDbSectionName = "MongoDb";
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection(MongoDbSectionName));
 

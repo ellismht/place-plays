@@ -16,11 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\PlacePlays.Application\PlacePlays.Application.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Models\" />
+      <Folder Include="DAL\Repositories\" />
     </ItemGroup>
 
 </Project>

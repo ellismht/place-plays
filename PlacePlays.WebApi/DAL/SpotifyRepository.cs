@@ -1,13 +1,10 @@
 ﻿using MongoDB.Driver;
-using PlacePlays.Application.Abstractions;
-using PlacePlays.Application.Services.Math;
-using PlacePlays.Domain.Entities;
-using PlacePlays.Infrastructure.Mapper;
-using PlacePlays.Infrastructure.Models;
+using PlacePlays.WebApi.Entities;
+using PlacePlays.WebApi.Services.Math;
 
-namespace PlacePlays.Infrastructure.DAL.Repositories;
+namespace PlacePlays.WebApi.DAL;
 
-internal class SpotifyRepository : IRepository
+internal class SpotifyRepository 
 {
     private readonly MongoDbContext _context;
     public SpotifyRepository(MongoDbContext context)

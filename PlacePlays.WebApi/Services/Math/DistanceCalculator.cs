@@ -1,6 +1,6 @@
-using PlacePlays.Domain.Entities;
+using PlacePlays.WebApi.Entities;
 
-namespace PlacePlays.Application.Services.Math;
+namespace PlacePlays.WebApi.Services.Math;
 
 public class DistanceCalculator
 {

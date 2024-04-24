@@ -1,8 +1,6 @@
-using PlacePlays.Application.Abstractions;
-using PlacePlays.Application.Services.Math;
-using PlacePlays.Domain.Entities;
+using PlacePlays.WebApi.Entities;
 
-namespace PlacePlays.Application.Services.Spotify;
+namespace PlacePlays.WebApi.Services.Spotify;
 
 public class SpotifyService : ISpotifyService
 {
