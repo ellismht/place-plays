@@ -1,4 +1,4 @@
-namespace PlacePlays.WebApi.Entities;
+namespace PlacePlays.WebApi.Models;
 
 public struct Point
 {

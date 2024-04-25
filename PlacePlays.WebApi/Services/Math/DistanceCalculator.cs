@@ -1,4 +1,4 @@
-using PlacePlays.WebApi.Entities;
+using PlacePlays.WebApi.Models;
 
 namespace PlacePlays.WebApi.Services.Math;
 

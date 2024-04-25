@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using PlacePlays.WebApi.Entities;
 using PlacePlays.WebApi.Models;
+using PlacePlays.WebApi.Models.Options;
 
 namespace PlacePlays.WebApi.DAL;
 

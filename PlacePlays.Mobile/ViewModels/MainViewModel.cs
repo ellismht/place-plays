@@ -1,10 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using PlacePlays.Domain.Entities;
-using PlacePlays.Mobile.Models.Spotify;
+using PlacePlays.Mobile.Models.ApiRequestModels;
 using PlacePlays.Mobile.Services.Api;
 using PlacePlays.Mobile.Services.Spotify;
-using Shiny.Locations;
 
 namespace PlacePlays.Mobile.ViewModels;
 

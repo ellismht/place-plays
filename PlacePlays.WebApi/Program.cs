@@ -1,7 +1,6 @@
-using PlacePlays.Application;
 using PlacePlays.WebApi.DAL;
 using PlacePlays.WebApi.Endpoints;
-using PlacePlays.WebApi.Models;
+using PlacePlays.WebApi.Models.Options;
 
 const string MongoDbSectionName = "MongoDb";
 
@@ -23,8 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGroup("/api")
-    .MapSpotifyEndpoints();
+app.MapEndpoints();
 
 //app.UseHttpsRedirection();
 

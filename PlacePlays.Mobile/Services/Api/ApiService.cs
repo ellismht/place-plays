@@ -1,8 +1,6 @@
-using System.Net;
+using PlacePlays.Mobile.Models.ApiResponseModels;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using PlacePlays.Domain.Entities;
+using PlacePlays.Mobile.Models.ApiRequestModels;
 using PlacePlays.Mobile.Models.Spotify;
 
 namespace PlacePlays.Mobile.Services.Api;

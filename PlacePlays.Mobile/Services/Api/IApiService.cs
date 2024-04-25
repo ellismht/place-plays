@@ -1,4 +1,5 @@
-using PlacePlays.Domain.Entities;
+using PlacePlays.Mobile.Models.ApiRequestModels;
+using PlacePlays.Mobile.Models.ApiResponseModels;
 using PlacePlays.Mobile.Models.Spotify;
 
 namespace PlacePlays.Mobile.Services.Api;
